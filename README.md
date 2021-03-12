@@ -2,6 +2,8 @@
 
 The app shows paginated filterable list of invoices.
 
+To see it head to [the app page](https://valikobird.github.io/invoice-list/).
+
 ## Invoice Details
 
 Each invoice has the following information:
@@ -49,6 +51,14 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run predeploy`
+
+Synonym for `npm run build`.
+
+### `npm run deploy`
+
+Deploys all changes from the current branch to `gh-pages` branch.
 
 ### `npm run eject`
 
