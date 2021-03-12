@@ -1,6 +1,6 @@
-import { render } from '@testing-library/react';
+import { checkTableHeaders } from '../testUtils';
 import MainContainer from './index';
 
-test('renders main container', () => {
-    render(<MainContainer />);
+test('table headers inside main container', () => {
+    checkTableHeaders(<MainContainer />);
 });

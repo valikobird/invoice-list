@@ -1,0 +1,10 @@
+{
+    "columns": {
+        "status": "Status",
+        "type": "Type",
+        "number": "Number",
+        "client_name": "Client Name",
+        "date": "Date",
+        "total_w_vat": "Total without VAT"
+    }
+}
