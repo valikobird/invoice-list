@@ -2,7 +2,7 @@
 
 The app shows paginated filterable list of invoices.
 
-To see it head to [the app page](https://valikobird.github.io/invoice-list/).
+To see it, head to [the app page](https://valikobird.github.io/invoice-list/).
 
 ## Invoice Details
 
@@ -17,11 +17,38 @@ Each invoice has the following information:
 
 ## Data Source
 
-The list is fetched from the .json file.
+Invoices are fetched from the `src/data/documents.json` file. See its default structure below.
+
+```json
+{
+  "meta": {
+    "quantity": 22  // shows overall documents count, introduced for API calls optimization
+  },
+  "documents": [    // list of invoices
+    {
+      "status": "Final",
+      "type": "Invoice",
+      "number": "2019/11",
+      "client_name": "Elon Tusk",
+      "date": "2019-02-31",
+      "total_w_vat": 123.42
+    },
+  ]
+}
+```
 
 ## Pagination
 
 By default it is fixed to be 7 invoices per page.
+It can be changed in the `src/config.json` file.
+
+```json
+{
+  "defaults": {
+    "pageSize": 7
+  }
+}
+```
 
 ## Table Columns
 

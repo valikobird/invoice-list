@@ -1,4 +1,7 @@
 {
+    "defaults": {
+        "pageSize": 7
+    },
     "columns": {
         "status": "Status",
         "type": "Type",
