@@ -21,7 +21,26 @@ The list is fetched from the .json file.
 
 ## Pagination
 
-It is fixed to be 7 invoices per page.
+By default it is fixed to be 7 invoices per page.
+
+## Table Columns
+
+The list of table columns, their keys and lables can be changed in the `src/config.json` file. Field sequence defines table columns sequence.
+
+**IMPORTANT** `Column keys must correspond to the invoice fields fetched from the data source`
+
+```json
+{
+  "columns": {
+    "status": "Status",
+    "type": "Type",
+    "number": "Number",
+    "client_name": "Client Name",
+    "date": "Date",
+    "total_w_vat": "Total without VAT"
+  }
+}
+```
 
 ## Available Scripts
 
