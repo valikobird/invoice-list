@@ -23,13 +23,17 @@ function MainContainer() {
     useEffect(() => {
         const filteredDocuments = documents.filter(document => {
             return Object.keys(filters).reduce((acc, columnId) => {
+                if (!filters[columnId]) {
+                    return acc;
+                }
+
                 const columnConfig = config.columns[columnId];
                 const filterType = columnConfig.filterType;
                 switch (filterType) {
                     case "select":
-                        return filters[columnId]
-                            ? acc && (document[columnId] === filters[columnId])
-                            : acc;
+                        return acc && (document[columnId] === filters[columnId])
+                    case "text":
+                        return acc && (document[columnId].includes(filters[columnId]));
                     default:
                         return acc;
                 }

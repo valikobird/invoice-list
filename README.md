@@ -97,7 +97,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `npm run predeploy`
 
-Synonym for `npm run build`.
+Synonym for `npm run build` which is used by `npm run deploy`.
 
 ### `npm run deploy`
 

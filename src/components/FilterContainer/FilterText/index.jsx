@@ -5,8 +5,15 @@ function FilterText({ columnId, updateFilterValue }) {
     const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
-        updateFilterValue(inputValue);
-    }, [inputValue, updateFilterValue]);
+        updateFilterValue({
+            columnId,
+            value: inputValue
+        });
+    }, [inputValue, columnId, updateFilterValue]);
+
+    const updateValue = event => {
+        setInputValue(event.target.value);
+    };
 
     return (
         <div className="filter filterText">
@@ -15,7 +22,7 @@ function FilterText({ columnId, updateFilterValue }) {
                 type="text"
                 name={columnId}
                 value={inputValue}
-                onChange={setInputValue}
+                onChange={updateValue}
             />
         </div>
     );
