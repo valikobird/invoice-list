@@ -1,18 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { columns } from '../../../config.json';
 
 function FilterText({ columnId, updateFilterValue }) {
     const [inputValue, setInputValue] = useState('');
 
-    useEffect(() => {
-        updateFilterValue({
-            columnId,
-            value: inputValue
-        });
-    }, [inputValue, columnId, updateFilterValue]);
-
     const updateValue = event => {
         setInputValue(event.target.value);
+        updateFilterValue({
+            columnId,
+            value: event.target.value
+        });
     };
 
     return (
