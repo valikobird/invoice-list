@@ -45,12 +45,8 @@ function FilterContainer({ applyFilters }) {
     };
 
     const updateFilterValue = newValue => {
-        if (filters[newValue.columnId] === newValue.value) {
-            return;
-        }
-
         const newFilters = { ...filters };
-        newFilters[newValue.columnId] = newValue.value;
+        newFilters[newValue.columnId] = newValue.value;  
         setFilters(newFilters);
     };
 

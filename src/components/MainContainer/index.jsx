@@ -28,12 +28,18 @@ function MainContainer() {
                 }
 
                 const columnConfig = config.columns[columnId];
-                const filterType = columnConfig.filterType;
-                switch (filterType) {
+                switch (columnConfig.filterType) {
                     case "select":
                         return acc && (document[columnId] === filters[columnId])
                     case "text":
-                        return acc && (document[columnId].includes(filters[columnId]));
+                        return acc && document[columnId].includes(filters[columnId]);
+                    case "date":
+                        const range = filters[columnId];
+                        const parts = document[columnId].split('-');
+                        const docDate = (new Date(parts[0], parts[1]-1, parts[2])).getTime();
+                        return acc
+                            && docDate >= range.startDate.getTime()
+                            && docDate <= range.endDate.getTime();
                     default:
                         return acc;
                 }

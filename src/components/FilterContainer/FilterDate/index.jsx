@@ -4,25 +4,36 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
 function FilterDate({ columnId, updateFilterValue }) {
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
+    const [range, setRange] = useState({
+        startDate: undefined,
+        endDate: undefined,
+    });
     const [showSelector, setShowSelector] = useState(false);
 
     const handleSelection = ranges => {
-        setStartDate(ranges[columnId].startDate);
-        setEndDate(ranges[columnId].endDate);
         toggleSelector();
+        const range = {
+            startDate: ranges[columnId].startDate,
+            endDate: ranges[columnId].endDate,
+        };
+        setRange(range);
+        updateFilterValue({
+            columnId,
+            value: range,
+        });
     };
 
     const getDateRangeText = useCallback(() => {
-        const start = startDate && `${startDate.getDate()}/${startDate.getMonth() + 1}/${startDate.getFullYear()}`;
-        const end = endDate && `${endDate.getDate()}/${endDate.getMonth() + 1}/${endDate.getFullYear()}`;
-        const text = !startDate && !endDate
+        const start = range.startDate 
+            && `${range.startDate.getDate()}/${range.startDate.getMonth() + 1}/${range.startDate.getFullYear()}`;
+        const end = range.endDate 
+            && `${range.endDate.getDate()}/${range.endDate.getMonth() + 1}/${range.endDate.getFullYear()}`;
+        const text = !range.startDate && !range.endDate
             ? 'is not selected'
             : `from ${start} to ${end}`;
 
         return `Date range ${text} (clickable)`;
-    }, [startDate, endDate]);
+    }, [range]);
 
     const toggleSelector = () => {
         setShowSelector(!showSelector);
@@ -34,8 +45,8 @@ function FilterDate({ columnId, updateFilterValue }) {
             {showSelector &&
                 <DateRangePicker
                     ranges={[{
-                        startDate,
-                        endDate,
+                        startDate: range.startDate,
+                        endDate: range.endDate,
                         key: columnId,
                     }]}
                     onChange={handleSelection}
