@@ -3,11 +3,40 @@
         "pageSize": 7
     },
     "columns": {
-        "status": "Status",
-        "type": "Type",
-        "number": "Number",
-        "client_name": "Client Name",
-        "date": "Date",
-        "total_w_vat": "Total without VAT"
+        "status": {
+            "label": "Status",
+            "filterType": "select",
+            "options": [
+                "Draft",
+                "Final",
+                "Paid",
+                "Cancelled"
+            ]
+        },
+        "type": {
+            "label": "Type",
+            "filterType": "select",
+            "options": [
+                "Invoice",
+                "Invoice-Receipt",
+                "Receipt"
+            ]
+        },
+        "number": {
+            "label": "Number",
+            "filterType": "text"
+        },
+        "client_name": {
+            "label": "Client Name",
+            "filterType": "text"
+        },
+        "date": {
+            "label": "Date",
+            "filterType": "date"
+        },
+        "total_w_vat": {
+            "label": "Total without VAT",
+            "filterType": "number"
+        }
     }
 }

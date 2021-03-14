@@ -7,10 +7,8 @@ function TableHeader({ columns }) {
                 {Object.keys(columns).map(columnKey => {
                     return (
                         <th className="table-header-cell"
-                            key={MD5([columnKey, columns[columnKey]].join('|')).toString()}
-                        >
-                            {columns[columnKey]}
-                        </th>
+                            key={MD5([columnKey, columns[columnKey].label].join('|')).toString()}
+                        >{columns[columnKey].label}</th>
                     );
                 })}
             </tr>

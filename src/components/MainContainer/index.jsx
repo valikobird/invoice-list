@@ -4,6 +4,7 @@ import Paginator from '../Paginator';
 import config from '../../config.json';
 // `documents` structure has changed by adding a separate `meta` block with total records quantity. Having this block we avoid fetching all data in order to show correct pages quantity.
 import { documents, meta } from '../../data/documents.json';
+import FilterContainer from '../FilterContainer';
 
 function MainContainer() {
     const [pageSize, setPageSize] = useState(0);
@@ -39,6 +40,7 @@ function MainContainer() {
     return (
         <div className="main-container">
             <h1>Invoices</h1>
+            <FilterContainer />
             <Table invoices={invoices} />
             <Paginator currentPage={pageNumber} quantity={pagesQuantity} updatePageNumber={updatePageNumber} />
         </div>

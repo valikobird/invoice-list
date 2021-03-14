@@ -10,7 +10,7 @@ describe('TableHeader', () => {
         expect(values.length).toBeGreaterThan(0);
 
         values.forEach(value => {
-            expect(screen.getByText(value)).toBeInTheDocument();
+            expect(screen.getByText(value.label)).toBeInTheDocument();
         });
     });
 });

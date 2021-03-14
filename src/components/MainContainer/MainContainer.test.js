@@ -1,11 +1,12 @@
 import { configure, mount } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import ReactSeventeenAdapter from '@wojtekmaj/enzyme-adapter-react-17';
 import MainContainer from './index';
 import Table from '../Table';
 import Paginator from '../Paginator';
 import TableDataRow from '../TableDataRow';
+import FilterContainer from '../FilterContainer';
 
-configure({ adapter: new Adapter()});
+configure({ adapter: new ReactSeventeenAdapter()});
 
 describe('MainContainer render', () => {
     const wrapper = mount(<MainContainer />);
@@ -20,6 +21,10 @@ describe('MainContainer render', () => {
 
     it('should contain table headers', () => {
         expect(wrapper.find(Table).length).toBe(1);
+    });
+
+    it('should contain filters container', () => {
+        expect(wrapper.find(FilterContainer).length).toBe(1);
     });
 
     it('should contain correct amount of rows in the table', () => {
