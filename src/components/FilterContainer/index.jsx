@@ -5,8 +5,10 @@ import MD5 from "crypto-js/md5";
 import FilterText from "./FilterText";
 import FilterDate from "./FilterDate";
 import FilterNumber from "./FilterNumber";
+import { useState } from "react";
 
-function FilterContainer() {
+function FilterContainer({ applyFilters }) {
+    const [filters, setFilters] = useState({});
 
     const getFilter = columnId => {
         const columnParams = columns[columnId];
@@ -43,12 +45,32 @@ function FilterContainer() {
     };
 
     const updateFilterValue = newValue => {
+        if (filters[newValue.columnId] === newValue.value) {
+            return;
+        }
 
+        const newFilters = { ...filters };
+        newFilters[newValue.columnId] = newValue.value;
+        setFilters(newFilters);
+    };
+
+    const handleClear = () => {
+        setFilters({});
+    };
+
+    const handleApply = () => {
+        applyFilters(filters);
     };
 
     return (
         <div className="filterContainer">
-            {Object.keys(columns).map(columnId => getFilter(columnId))}
+            <div className="filters">
+                {Object.keys(columns).map(columnId => getFilter(columnId))}
+            </div>
+            <div className="controls">
+                <button className="clear" onClick={handleClear}>Clear</button>
+                <button className="apply" onClick={handleApply}>Apply</button>
+            </div>
         </div>
     );
 }

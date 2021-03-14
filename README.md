@@ -17,14 +17,11 @@ Each invoice has the following information:
 
 ## Data Source
 
-Invoices are fetched from the `src/data/documents.json` file. See its default structure below.
+Invoices are fetched from the `src/data/documents.json` file. See its structure below.
 
 ```json
 {
-  "meta": {
-    "quantity": 22  // shows overall documents count, introduced for API calls optimization
-  },
-  "documents": [    // list of invoices
+  "documents": [
     {
       "status": "Final",
       "type": "Invoice",

@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Paginator({ currentPage, quantity, updatePageNumber }) {
-    const [inputValue, setInputValue] = useState(currentPage);
+    const [inputValue, setInputValue] = useState(0);
+
+    useEffect(() => {
+        setInputValue(currentPage);
+    }, [currentPage]);
 
     const handleInput = event => {
         applyNewValue(event.target.value);
@@ -49,9 +53,9 @@ function Paginator({ currentPage, quantity, updatePageNumber }) {
     return (
         <div>
             <button
-                className="prevPage" 
-                onClick={handlePrev} 
-                hidden={currentPage === 1}
+                className="prevPage"
+                onClick={handlePrev}
+                hidden={currentPage <= 1}
             >Prev</button>
             <input
                 type="text"
@@ -62,7 +66,7 @@ function Paginator({ currentPage, quantity, updatePageNumber }) {
             />
             <span className="pagesQuantity">{`out of ${quantity}`}</span>
             <button
-                className="nextPage" 
+                className="nextPage"
                 onClick={handleNext}
                 hidden={currentPage === quantity}
             >Next</button>
