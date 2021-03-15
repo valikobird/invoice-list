@@ -6,21 +6,23 @@ import { columns } from '../../config.json';
 
 function Table({ invoices }) {
     return (
-        <table>
-            <TableHeader
-                columns={columns}
-                key={MD5(Object.keys(columns).join('|')).toString()}
-            />
-            <tbody>
-                {invoices.map(invoice => {
-                    return <TableDataRow
-                        invoice={invoice}
-                        key={MD5(Object.values(invoice).join('|')).toString()}
-                        keySalt={MD5(Object.values(invoice).join('|')).toString()}
-                    />;
-                })}
-            </tbody>
-        </table>
+        <div className="table-responsive">
+            <table className="table table-hover">
+                <TableHeader
+                    columns={columns}
+                    key={MD5(Object.keys(columns).join('|')).toString()}
+                />
+                <tbody>
+                    {invoices.map(invoice => {
+                        return <TableDataRow
+                            invoice={invoice}
+                            key={MD5(Object.values(invoice).join('|')).toString()}
+                            keySalt={MD5(Object.values(invoice).join('|')).toString()}
+                        />;
+                    })}
+                </tbody>
+            </table>
+        </div>
     );
 }
 

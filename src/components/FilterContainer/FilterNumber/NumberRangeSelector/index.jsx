@@ -19,11 +19,26 @@ function NumberRangeSelector({ minValue, maxValue, updateRange }) {
     };
 
     return (
-        <div className="numberRangeSelector">
+        <div className="my-2">
             <label htmlFor="from">From</label>
-            <input type="number" value={range.from} onChange={handleChangeValueFrom} autoFocus />
+            <input
+                type="number"
+                value={range.from}
+                onChange={handleChangeValueFrom}
+                className="mx-2 pl-2"
+                size="10"
+                min="0"
+                autoFocus
+            />
             <label htmlFor="to">to</label>
-            <input type="number" value={range.to} onChange={handleChangeValueTo} />
+            <input
+                type="number"
+                value={range.to}
+                onChange={handleChangeValueTo}
+                className="mx-2 pl-2"
+                size="10"
+                min="0"
+            />
         </div>
     );
 };

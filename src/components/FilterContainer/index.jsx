@@ -50,21 +50,21 @@ function FilterContainer({ applyFilters }) {
         setFilters(newFilters);
     };
 
-    const handleClear = () => {
-        setFilters({});
-    };
-
     const handleApply = () => {
         applyFilters(filters);
     };
 
     return (
-        <div className="filterContainer">
-            <div className="filters">
+        <div className="mb-4 d-flex flex-row justify-content-between">
+            <div className="pl-0 container d-flex flex-row justify-content-between flex-wrap">
                 {Object.keys(columns).map(columnId => getFilter(columnId))}
             </div>
-            <div className="controls">
-                <button className="apply" onClick={handleApply}>Apply</button>
+            <div className="d-flex align-self-stretch controls">
+                <button
+                    type="button"
+                    className="btn btn-outline-success"
+                    onClick={handleApply}
+                >Apply</button>
             </div>
         </div>
     );

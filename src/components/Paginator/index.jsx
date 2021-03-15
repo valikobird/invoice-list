@@ -51,9 +51,10 @@ function Paginator({ currentPage, quantity, updatePageNumber }) {
     };
 
     return (
-        <div>
+        <div className="text-center">
             <button
-                className="prevPage"
+                type="button"
+                className="prevPage btn btn-sm btn-outline-secondary mr-3"
                 onClick={handlePrev}
                 hidden={currentPage <= 1}
             >Prev</button>
@@ -63,10 +64,12 @@ function Paginator({ currentPage, quantity, updatePageNumber }) {
                 value={inputValue}
                 onInput={handleInput}
                 onKeyPress={handleKeyPress}
+                className="mr-2 px-2 text-center"
+                size="2"
             />
             <span className="pagesQuantity">{`out of ${quantity}`}</span>
             <button
-                className="nextPage"
+                className="nextPage btn btn-sm btn-outline-secondary ml-3"
                 onClick={handleNext}
                 hidden={currentPage === quantity}
             >Next</button>

@@ -1,3 +1,3 @@
-const TableDataCell = ({ value }) => <td className="table-cell">{value}</td>;
+const TableDataCell = ({ value }) => <td>{value}</td>;
 
 export default TableDataCell;

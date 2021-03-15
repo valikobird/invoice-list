@@ -80,8 +80,8 @@ function MainContainer() {
     };
 
     return (
-        <div className="main-container">
-            <h1>Invoices</h1>
+        <div className="container">
+            <h1 className="text-center mt-5 mb-4">Invoices</h1>
             <FilterContainer applyFilters={setFilters} />
             <Table invoices={invoices} />
             <Paginator

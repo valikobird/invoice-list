@@ -14,7 +14,7 @@ function FilterSelect({ columnId, options, updateFilterValue }) {
     };
 
     return (
-        <div className="filter filterSelect">
+        <div className="d-flex flex-column my-2">
             <label htmlFor={columnId}>{columns[columnId].label}</label>
             <select name={columnId} id={columnId} onChange={handleChange}>
                 <option value=""></option>

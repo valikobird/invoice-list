@@ -32,7 +32,7 @@ function FilterDate({ columnId, updateFilterValue }) {
             ? 'is not selected'
             : `from ${start} to ${end}`;
 
-        return `Date range ${text} (clickable)`;
+        return `Date range ${text}`;
     }, [range]);
 
     const toggleSelector = () => {
@@ -52,18 +52,29 @@ function FilterDate({ columnId, updateFilterValue }) {
     };
 
     return (
-        <div className="filter filterDate">
-            <span className="dateRange" onClick={toggleSelector}>{getDateRangeText()}</span>
-            <button className="clear" onClick={handleClear}>Clear</button>
+        <div className="pl-0 my-2 w-50 d-flex flex-row justify-content-start align-items-baseline">
+            <span>{getDateRangeText()}</span>
+            <button
+                type="button"
+                className="btn btn-outline-primary btn-sm ml-2"
+                onClick={toggleSelector}
+            >{showSelector ? 'Hide' : 'Select'}</button>
+            <button
+                type="button"
+                className="btn btn-outline-secondary btn-sm ml-2"
+                onClick={handleClear}
+            >Clear</button>
             {showSelector &&
-                <DateRangePicker
-                    ranges={[{
-                        startDate: range.startDate,
-                        endDate: range.endDate,
-                        key: columnId,
-                    }]}
-                    onChange={handleSelection}
-                />
+                <div className="position-absolute mt-4 pt-3">
+                    <DateRangePicker
+                        ranges={[{
+                            startDate: range.startDate,
+                            endDate: range.endDate,
+                            key: columnId,
+                        }]}
+                        onChange={handleSelection}
+                    />
+                </div>
             }
         </div>
     );
