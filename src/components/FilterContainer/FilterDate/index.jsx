@@ -12,14 +12,14 @@ function FilterDate({ columnId, updateFilterValue }) {
 
     const handleSelection = ranges => {
         toggleSelector();
-        const range = {
+        const newRange = {
             startDate: ranges[columnId].startDate,
             endDate: ranges[columnId].endDate,
         };
-        setRange(range);
+        setRange(newRange);
         updateFilterValue({
             columnId,
-            value: range,
+            value: newRange,
         });
     };
 
