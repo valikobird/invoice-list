@@ -38,9 +38,11 @@ function MainContainer() {
                         const dateRange = filters[columnId];
                         const parts = docValue.split('-');
                         const docDate = (new Date(parts[0], parts[1] - 1, parts[2])).getTime();
-                        return acc
-                            && docDate >= dateRange.startDate.getTime()
-                            && docDate <= dateRange.endDate.getTime();
+                        return (!dateRange.startDate && !dateRange.endDate)
+                            ? acc
+                            : acc
+                                && docDate >= dateRange.startDate.getTime()
+                                && docDate <= dateRange.endDate.getTime();
                     case "number":
                         const numberRange = filters[columnId];
                         if (!numberRange.from && !numberRange.to) {

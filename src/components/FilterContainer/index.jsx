@@ -46,7 +46,7 @@ function FilterContainer({ applyFilters }) {
 
     const updateFilterValue = newValue => {
         const newFilters = { ...filters };
-        newFilters[newValue.columnId] = newValue.value;  
+        newFilters[newValue.columnId] = newValue.value;
         setFilters(newFilters);
     };
 
@@ -64,7 +64,6 @@ function FilterContainer({ applyFilters }) {
                 {Object.keys(columns).map(columnId => getFilter(columnId))}
             </div>
             <div className="controls">
-                <button className="clear" onClick={handleClear}>Clear</button>
                 <button className="apply" onClick={handleApply}>Apply</button>
             </div>
         </div>

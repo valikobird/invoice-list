@@ -24,9 +24,9 @@ function FilterDate({ columnId, updateFilterValue }) {
     };
 
     const getDateRangeText = useCallback(() => {
-        const start = range.startDate 
+        const start = range.startDate
             && `${range.startDate.getDate()}/${range.startDate.getMonth() + 1}/${range.startDate.getFullYear()}`;
-        const end = range.endDate 
+        const end = range.endDate
             && `${range.endDate.getDate()}/${range.endDate.getMonth() + 1}/${range.endDate.getFullYear()}`;
         const text = !range.startDate && !range.endDate
             ? 'is not selected'
@@ -39,9 +39,22 @@ function FilterDate({ columnId, updateFilterValue }) {
         setShowSelector(!showSelector);
     };
 
+    const handleClear = () => {
+        const newRange = {
+            startDate: undefined,
+            endDate: undefined,
+        };
+        setRange(newRange);
+        updateFilterValue({
+            columnId,
+            value: newRange,
+        });
+    };
+
     return (
         <div className="filter filterDate">
             <span className="dateRange" onClick={toggleSelector}>{getDateRangeText()}</span>
+            <button className="clear" onClick={handleClear}>Clear</button>
             {showSelector &&
                 <DateRangePicker
                     ranges={[{

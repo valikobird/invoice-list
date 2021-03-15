@@ -1,7 +1,7 @@
 {
     "name": "invoice-list",
     "homepage": "https://valikobird.github.io/invoice-list/",
-    "version": "0.3.4",
+    "version": "0.3.5",
     "private": true,
     "dependencies": {
         "crypto-js": "^4.0.0",
