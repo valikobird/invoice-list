@@ -1,30 +1,29 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function NumberRangeSelector({ minValue, maxValue, updateRange }) {
-    const [valueFrom, setValueFrom] = useState(minValue || 0);
-    const [valueTo, setValueTo] = useState(maxValue || 0);
+    const [range, setRange] = useState({
+        from: minValue || '',
+        to: maxValue || ''
+    });
 
-    const handleValueFromChange = event => {
-        setValueFrom(event.target.value);
+    const handleChangeValueFrom = event => {
+        const newRange = Object.assign({}, range, { from: event.target.value });
+        setRange(newRange);
+        updateRange(newRange);
     };
 
-    const handleValueToChange = event => {
-        setValueTo(event.target.value);
+    const handleChangeValueTo = event => {
+        const newRange = Object.assign({}, range, { to: event.target.value });
+        setRange(newRange);
+        updateRange(newRange);
     };
-
-    useEffect(() => {
-        updateRange({
-            "minValue": valueFrom,
-            "maxValue": valueTo,
-        });
-    }, [valueFrom, valueTo, updateRange]);
 
     return (
         <div className="numberRangeSelector">
             <label htmlFor="from">From</label>
-            <input type="number" value={valueFrom} onChange={handleValueFromChange} />
+            <input type="number" value={range.from} onChange={handleChangeValueFrom} autoFocus />
             <label htmlFor="to">to</label>
-            <input type="number" value={valueTo} onChange={handleValueToChange} />
+            <input type="number" value={range.to} onChange={handleChangeValueTo} />
         </div>
     );
 };

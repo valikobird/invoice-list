@@ -27,19 +27,33 @@ function MainContainer() {
                     return acc;
                 }
 
+                const docValue = document[columnId];
                 const columnConfig = config.columns[columnId];
                 switch (columnConfig.filterType) {
                     case "select":
-                        return acc && (document[columnId] === filters[columnId])
+                        return acc && (docValue === filters[columnId])
                     case "text":
-                        return acc && document[columnId].includes(filters[columnId]);
+                        return acc && docValue.includes(filters[columnId]);
                     case "date":
-                        const range = filters[columnId];
-                        const parts = document[columnId].split('-');
-                        const docDate = (new Date(parts[0], parts[1]-1, parts[2])).getTime();
+                        const dateRange = filters[columnId];
+                        const parts = docValue.split('-');
+                        const docDate = (new Date(parts[0], parts[1] - 1, parts[2])).getTime();
                         return acc
-                            && docDate >= range.startDate.getTime()
-                            && docDate <= range.endDate.getTime();
+                            && docDate >= dateRange.startDate.getTime()
+                            && docDate <= dateRange.endDate.getTime();
+                    case "number":
+                        const numberRange = filters[columnId];
+                        if (!numberRange.from && !numberRange.to) {
+                            return acc;
+                        } else if (numberRange.from && !numberRange.to) {
+                            return acc && (docValue >= numberRange.from);
+                        } else if (!numberRange.from && numberRange.to) {
+                            return acc && (docValue <= numberRange.to);
+                        } else {
+                            return acc
+                                && docValue >= numberRange.from
+                                && docValue <= numberRange.to;
+                        }
                     default:
                         return acc;
                 }

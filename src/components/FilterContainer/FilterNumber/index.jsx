@@ -3,31 +3,36 @@ import NumberRangeSelector from "./NumberRangeSelector";
 
 function FilterNumber({ columnId, updateFilterValue }) {
     const [showSelector, setShowSelector] = useState(false);
-    const [minAmount, setMinAmount] = useState();
-    const [maxAmount, setMaxAmount] = useState();
+    const [range, setRange] = useState({
+        from: undefined,
+        to: undefined,
+    });
 
     const getNumberRangeText = useCallback(() => {
         let text;
-        if (!minAmount && !maxAmount) {
+        if (!range.from && !range.to) {
             text = 'is not selected';
-        } else if (minAmount && !maxAmount) {
-            text = `from ${minAmount}`;
-        } else if (!minAmount && maxAmount) {
-            text = `up to ${maxAmount}`;
+        } else if (range.from && !range.to) {
+            text = `from ${range.from}`;
+        } else if (!range.from && range.to) {
+            text = `up to ${range.to}`;
         } else {
-            text = `from ${minAmount} to ${maxAmount}`;
+            text = `from ${range.from} to ${range.to}`;
         }
 
         return `Amount range ${text} (clickable)`;
-    }, [minAmount, maxAmount]);
+    }, [range]);
 
     const toggleSelector = () => {
         setShowSelector(!showSelector);
     };
 
-    const updateRange = range => {
-        setMinAmount(range.minValue);
-        setMaxAmount(range.maxValue);
+    const updateRange = newRange => {
+        setRange(newRange);
+        updateFilterValue({
+            columnId,
+            value: newRange,
+        });
     };
 
     return (
@@ -35,8 +40,8 @@ function FilterNumber({ columnId, updateFilterValue }) {
             <span className="numberRange" onClick={toggleSelector}>{getNumberRangeText()}</span>
             {showSelector &&
                 <NumberRangeSelector
-                    minValue={minAmount}
-                    maxValue={maxAmount}
+                    minValue={range.from}
+                    maxValue={range.to}
                     updateRange={updateRange}
                 />
             }
