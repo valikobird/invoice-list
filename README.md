@@ -2,6 +2,8 @@
 
 The app shows paginated filterable list of invoices.
 
+To see it, head to [the app page](https://valikobird.github.io/invoice-list/).
+
 ## Invoice Details
 
 Each invoice has the following information:
@@ -15,11 +17,54 @@ Each invoice has the following information:
 
 ## Data Source
 
-The list is fetched from the .json file.
+Invoices are fetched from the `src/data/documents.json` file. See its structure below.
+
+```json
+{
+  "documents": [
+    {
+      "status": "Final",
+      "type": "Invoice",
+      "number": "2019/11",
+      "client_name": "Elon Tusk",
+      "date": "2019-02-31",
+      "total_w_vat": 123.42
+    },
+  ]
+}
+```
 
 ## Pagination
 
-It is fixed to be 7 invoices per page.
+By default it is fixed to be 7 invoices per page.
+It can be changed in the `src/config.json` file.
+
+```json
+{
+  "defaults": {
+    "pageSize": 7
+  }
+}
+```
+
+## Table Columns
+
+The list of table columns, their keys and lables can be changed in the `src/config.json` file. Field sequence defines table columns sequence.
+
+**IMPORTANT** `Column keys must correspond to the invoice fields fetched from the data source`
+
+```json
+{
+  "columns": {
+    "status": "Status",
+    "type": "Type",
+    "number": "Number",
+    "client_name": "Client Name",
+    "date": "Date",
+    "total_w_vat": "Total without VAT"
+  }
+}
+```
 
 ## Available Scripts
 
@@ -49,6 +94,14 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run predeploy`
+
+Synonym for `npm run build` which is used by `npm run deploy`.
+
+### `npm run deploy`
+
+Deploys all changes from the current branch to `gh-pages` branch.
 
 ### `npm run eject`
 
